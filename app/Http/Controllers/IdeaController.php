@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Idea;
+use App\Models\Tournament;
 use Illuminate\Http\Request;
 
 class IdeaController extends Controller
 {
     public function index(){
-        return view('ideas.index');
+        $ideas = Idea::get();
+        return view('ideas.index',compact('ideas'));
     }
     public function create(){
         return view('ideas.create');
@@ -26,9 +28,33 @@ class IdeaController extends Controller
             'user_id' => auth()->user()->id,
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
-            'idea' => $validatedData['idea']
+            'idea' => $validatedData['idea'],
+            'status' => 'active'
         ]);
 
-        return redirect()->route('ideas.index')->with('success', 'Idea created successfully');
+
+        $ideas = Idea::where('status', 'active')->take(8)->get();
+
+        if ($ideas->count() === 8) {
+            $tournament = Tournament::create([
+                'title' => 'Auto-started Tournament',
+                'status' => 'start',
+            ]);
+
+            foreach ($ideas as $idea) {
+                $tournament->ideas()->attach($idea);
+                $idea['status'] = 'participated';
+                $idea->save();
+            }
+
+            return 1;
+
+        } else {
+            
+            return redirect()->route('ideas.index')->with('success', 'Idea created successfully');
+        }
+
+
+
     }
 }

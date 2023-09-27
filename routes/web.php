@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IdeaController;
+use App\Http\Controllers\TournamentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/ideas/create', [IdeaController::class, 'create'])->name('ideas.create');
     Route::post('/ideas', [IdeaController::class, 'store'])->name('ideas.store');
 });
+
+//tournaments routes
+Route::post('/tournaments', [TournamentController::class, 'store'])->name('tournaments.store');
+
+//wining phases routes
+Route::post('/phase', [TournamentController::class, 'start'])->name('tournaments.start');
+Route::post('/phase', [TournamentController::class, 'phaseOne'])->name('tournaments.phaseOne');
+Route::post('/phase', [TournamentController::class, 'phaseTwo'])->name('tournaments.phaseTwo');

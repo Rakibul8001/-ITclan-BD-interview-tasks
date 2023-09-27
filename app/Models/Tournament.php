@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
-use App\Models\Tournament;
+use App\Models\Idea;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Idea extends Model
+class Tournament extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    public function tournaments()
+    public function ideas()
     {
-        return $this->belongsToMany(Tournament::class, 'idea_tournament');
+        return $this->belongsToMany(Idea::class, 'idea_tournament');
     }
 }

@@ -25,7 +25,7 @@
                             <textarea id="idea" name="idea" class="form-control" rows="5" required></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary mt-3">Create User</button>
+                        <button type="submit" class="btn btn-primary mt-3">Create</button>
                     </form>
                 </div>
             </div>
