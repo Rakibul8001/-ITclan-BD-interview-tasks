@@ -99,7 +99,7 @@
 @push('scripts')
 <script>
 $(document).ready(function(){
-    alert('alert from home page');
+    // alert('alert from home page');
     function tournamentRefreshPage() {
         location.reload();
         console.log("welcome");
