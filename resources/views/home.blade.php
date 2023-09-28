@@ -13,6 +13,8 @@
                   @foreach ($tournaments as $tournament)
                   
                   <div class="text-center mb-3"><u>Running: {{$tournament->title}}</u> </div>
+
+                  <h5 class="countdown text-center text-danger" data-end-time="{{ $tournament->created_at->addMinutes(15) }}"></h5>
                 
                     @php
                         $phase_one = $tournament->ideas->where('phase_one', 1)->take(4);
@@ -107,6 +109,30 @@ $(document).ready(function(){
 
     // Refresh the page every minutes
     setInterval(tournamentRefreshPage, 60000);
+
+    //countdown the tournament
+    var countdownElements = document.querySelectorAll('.countdown');
+    console.log('countdown elements', countdownElements);
+
+    countdownElements.forEach(function(element) {
+        var endTime = new Date(element.getAttribute('data-end-time')).getTime();
+
+        // Update the countdown timer for each element
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var timeRemaining = endTime - now;
+
+            if (timeRemaining <= 0) {
+                clearInterval(x);
+                element.innerHTML = "Countdown expired!";
+            } else {
+                var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+                var formattedTime = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+                element.innerHTML = "Countdown: " + formattedTime;
+            }
+        }, 1000);
+    });
 });
 </script>
 @endpush

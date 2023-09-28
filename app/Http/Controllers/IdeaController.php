@@ -36,8 +36,11 @@ class IdeaController extends Controller
         $ideas = Idea::where('status', 'active')->take(8)->get();
 
         if ($ideas->count() === 8) {
+            $totalTournaments = Tournament::count();
+            $nextNumber = $totalTournaments + 1;
+    
             $tournament = Tournament::create([
-                'title' => 'Auto-started Tournament',
+                'title' => 'Tournament Number '.$nextNumber,
                 'status' => 'start',
             ]);
 

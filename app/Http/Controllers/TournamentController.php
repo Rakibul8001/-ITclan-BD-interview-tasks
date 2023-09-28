@@ -10,7 +10,7 @@ class TournamentController extends Controller
 {
 
     public function index(){
-        $tournaments = Tournament::paginate(2);
+        $tournaments = Tournament::paginate(10);
 
         return view('tournaments.index', compact('tournaments'));
     }
