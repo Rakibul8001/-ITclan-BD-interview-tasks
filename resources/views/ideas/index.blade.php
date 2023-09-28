@@ -15,13 +15,7 @@
                     Add New Idea
                   </a>
                   </div>
-                  <div class="ms-auto flex-shrink-0">
-                    <form method="POST" action="{{ route('tournaments.phaseTwo') }}">
-                      @csrf
-                      <!-- Form fields here -->
-                      <button type="submit">Submit</button>
-                  </form>
-                  </div>
+                 
                 </div>
 
                 <div class="card-body">
@@ -38,8 +32,8 @@
                       @foreach ($ideas as $key=>$idea)
                       <tr>
                           <td>{{$key+1}}</td>
-                          <td>John Doe</td>
-                          <td>john@example.com</td>
+                          <td>{{$idea->name}}</td>
+                          <td>{{$idea->email}}</td>
                           <td>{{$idea->status}}</td>
                       </tr>
                       @endforeach

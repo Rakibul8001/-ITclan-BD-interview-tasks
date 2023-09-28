@@ -33,7 +33,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('home')}}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('ideas.index')}}">Ideas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('tournaments.index')}}">Tournaments</a>
+                        </li>
+                     
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -81,12 +90,19 @@
     </div>
 
 
-
-    <!-- Bootstrap JavaScript and Popper.js CDN (for Bootstrap's JavaScript functionality) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <!-- Yield the scripts section -->
+        <!-- Bootstrap JavaScript and Popper.js CDN (for Bootstrap's JavaScript functionality) -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+        
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- <script src="{{ asset('/js/app.js') }}"></script> --}}
+    <script src="{{ asset('js/app.js') }}"></script>
+
+    @stack('scripts')
+
+
 </body>
 </html>

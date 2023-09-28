@@ -1,5 +1,7 @@
 <?php
 
+use App\Mail\SendEmail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\TournamentController;
@@ -32,8 +34,21 @@ Route::middleware(['auth'])->group(function () {
 
 //tournaments routes
 Route::post('/tournaments', [TournamentController::class, 'store'])->name('tournaments.store');
+Route::get('/tournament/{id}', [TournamentController::class, 'show'])->name('tournaments.show');
+Route::get('/tournaments', [TournamentController::class, 'index'])->name('tournaments.index');
 
 //wining phases routes
 Route::post('/phase', [TournamentController::class, 'start'])->name('tournaments.start');
-Route::post('/phase', [TournamentController::class, 'phaseOne'])->name('tournaments.phaseOne');
-Route::post('/phase', [TournamentController::class, 'phaseTwo'])->name('tournaments.phaseTwo');
+// Route::post('/phase', [TournamentController::class, 'phaseOne'])->name('tournaments.phaseOne');
+// Route::post('/phase', [TournamentController::class, 'phaseTwo'])->name('tournaments.phaseTwo');
+
+// Route::get('/send-email',function(){
+//     $message ='This is for testing email using smtp';
+
+//     $recipients =['mdrakibul.islam8001@gmail.com'];
+//      Mail::to($recipients)->send(new SendEmail($message));
+
+//      dd("Email is Sent.");
+// });
+
+

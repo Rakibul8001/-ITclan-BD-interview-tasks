@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class TournamentController extends Controller
 {
+
+    public function index(){
+        $tournaments = Tournament::get();
+
+        return view('tournaments.index', compact('tournaments'));
+    }
+
     public function store(Request $request){
         $tournament = Tournament::create([
             'title' => 'Tournament 2',
@@ -20,6 +27,26 @@ class TournamentController extends Controller
 
         return $tournament;
     }
+
+    public function show($id){
+        $tournament = Tournament::find($id);
+
+        if(!$tournament){
+            dd('No tournament found!');
+        }
+
+
+        $all_participant = $tournament->ideas;
+        $phase_one = $tournament->ideas->where('phase_one', 1)->take(4);
+        $phase_two = $tournament->ideas->where('phase_two', 1)->take(2);
+        $final_phase = $tournament->ideas->where('final_phase', 1)->take(1);
+
+        // dd($all_participant) ;
+        return view('tournaments.show', compact('tournament','all_participant', 'phase_one','phase_two','final_phase'));
+
+
+    }
+
 
     public function start(Request $request){
         $tournaments = Tournament::where('status','=', 'start')->with(['ideas'=>function($query){

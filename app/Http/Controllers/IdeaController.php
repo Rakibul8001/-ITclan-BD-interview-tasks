@@ -16,6 +16,15 @@ class IdeaController extends Controller
         return view('ideas.create');
     }
     public function store(Request $request){
+
+        // $tournament = Tournament::find(10);
+        // $tournamentIdeas = $tournament->ideas
+        // ->where('phase_one', 1)
+        // ->shuffle()
+        // ->take(2);
+
+        // return $tournamentIdeas;
+
             // Validate the form data
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
@@ -47,7 +56,7 @@ class IdeaController extends Controller
                 $idea->save();
             }
 
-            return 1;
+            return redirect()->route('tournaments.show', ['id' => $tournament->id]);
 
         } else {
             
