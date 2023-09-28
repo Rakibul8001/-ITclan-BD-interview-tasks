@@ -9,23 +9,14 @@ use Illuminate\Http\Request;
 class IdeaController extends Controller
 {
     public function index(){
-        $ideas = Idea::get();
+        $ideas = Idea::paginate(10);
         return view('ideas.index',compact('ideas'));
     }
     public function create(){
         return view('ideas.create');
     }
     public function store(Request $request){
-
-        // $tournament = Tournament::find(10);
-        // $tournamentIdeas = $tournament->ideas
-        // ->where('phase_one', 1)
-        // ->shuffle()
-        // ->take(2);
-
-        // return $tournamentIdeas;
-
-            // Validate the form data
+        // Validate the form data
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email', // Use 'email' rule for email validation

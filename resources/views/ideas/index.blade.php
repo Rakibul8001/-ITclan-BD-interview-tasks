@@ -15,14 +15,25 @@
                     Add New Idea
                   </a>
                   </div>
+                  <div class="ms-auto flex-shrink-0">
+                    <form method="POST" action="{{ route('tournaments.store') }}">
+
+                      @csrf
+                      <button type="submit" class="btn btn-primary">sumbit</button>
+                    </form>
+                  </div>
                  
                 </div>
+
+                @php
+                    $counter = ($ideas->currentPage() - 1) * $ideas->perPage() + 1;
+                @endphp
 
                 <div class="card-body">
                   <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>#Sl</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>status</th>
@@ -31,14 +42,21 @@
                     <tbody>
                       @foreach ($ideas as $key=>$idea)
                       <tr>
-                          <td>{{$key+1}}</td>
+                          <td>{{$counter}}</td>
                           <td>{{$idea->name}}</td>
                           <td>{{$idea->email}}</td>
                           <td>{{$idea->status}}</td>
                       </tr>
+
+                      @php
+                        $counter++;
+                      @endphp
                       @endforeach
                     </tbody>
                 </table>
+
+                {{$ideas->links()}}
+
                 </div>
             </div>
         </div>

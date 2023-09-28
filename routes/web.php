@@ -30,15 +30,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/ideas', [IdeaController::class,'index'])->name('ideas.index');
     Route::get('/ideas/create', [IdeaController::class, 'create'])->name('ideas.create');
     Route::post('/ideas', [IdeaController::class, 'store'])->name('ideas.store');
+    //tournaments routes
+    Route::get('/tournament/{id}', [TournamentController::class, 'show'])->name('tournaments.show');
+    Route::get('/tournaments', [TournamentController::class, 'index'])->name('tournaments.index');
+    Route::post('/tournaments', [TournamentController::class, 'store'])->name('tournaments.store');
 });
 
-//tournaments routes
-Route::post('/tournaments', [TournamentController::class, 'store'])->name('tournaments.store');
-Route::get('/tournament/{id}', [TournamentController::class, 'show'])->name('tournaments.show');
-Route::get('/tournaments', [TournamentController::class, 'index'])->name('tournaments.index');
 
 //wining phases routes
-Route::post('/phase', [TournamentController::class, 'start'])->name('tournaments.start');
+
 // Route::post('/phase', [TournamentController::class, 'phaseOne'])->name('tournaments.phaseOne');
 // Route::post('/phase', [TournamentController::class, 'phaseTwo'])->name('tournaments.phaseTwo');
 
