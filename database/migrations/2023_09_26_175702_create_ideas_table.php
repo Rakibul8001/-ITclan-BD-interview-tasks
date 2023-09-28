@@ -20,6 +20,9 @@ class CreateIdeasTable extends Migration
             $table->string('email');
             $table->text('idea');
             $table->string('status');
+            $table->tinyInteger('phase_one')->default(0);
+            $table->tinyInteger('phase_two')->default(0);
+            $table->tinyInteger('final_phase')->default(0);
             $table->timestamps();
         });
     }
