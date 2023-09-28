@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\TournamentController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,9 @@ use App\Http\Controllers\TournamentController;
 */
 
 Route::get('/', function () {
+    if(Auth::check()){
+        return redirect()->route('home');
+    }
     return view('welcome');
 });
 
@@ -37,18 +41,14 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-//wining phases routes
+//test email by mailtrap
+Route::get('/send-email',function(){
+    $message ='This is for testing email using smtp';
 
-// Route::post('/phase', [TournamentController::class, 'phaseOne'])->name('tournaments.phaseOne');
-// Route::post('/phase', [TournamentController::class, 'phaseTwo'])->name('tournaments.phaseTwo');
+    $recipients =['mdrakibul.islam8001@gmail.com'];
+     Mail::to($recipients)->send(new SendEmail($message));
 
-// Route::get('/send-email',function(){
-//     $message ='This is for testing email using smtp';
-
-//     $recipients =['mdrakibul.islam8001@gmail.com'];
-//      Mail::to($recipients)->send(new SendEmail($message));
-
-//      dd("Email is Sent.");
-// });
+     dd("Email is Sent.");
+});
 
 

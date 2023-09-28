@@ -15,10 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
         $schedule->command('tournament:start')->timezone('Asia/Dhaka')->everyMinute();
-        // $schedule->command('demo:secondPhaseTournament')->everyTenMinutes();
-        // $schedule->command('test:thirdPhaseTournament')->everyFifteenMinutes();
     }
 
     /**

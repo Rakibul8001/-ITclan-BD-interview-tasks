@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header d-flex">
-                  <div>Ideas List</div>
+                  <div><strong>Ideas List</strong></div>
                   <div class="ms-auto flex-shrink-0">
                     <a href="{{route('ideas.create')}}"
                     class=" btn btn-primary"
@@ -14,13 +14,6 @@
                   >
                     Add New Idea
                   </a>
-                  </div>
-                  <div class="ms-auto flex-shrink-0">
-                    <form method="POST" action="{{ route('tournaments.store') }}">
-
-                      @csrf
-                      <button type="submit" class="btn btn-primary">sumbit</button>
-                    </form>
                   </div>
                  
                 </div>
@@ -36,6 +29,7 @@
                             <th>#Sl</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Idea</th>
                             <th>status</th>
                         </tr>
                     </thead>
@@ -45,6 +39,7 @@
                           <td>{{$counter}}</td>
                           <td>{{$idea->name}}</td>
                           <td>{{$idea->email}}</td>
+                          <td>{{$idea->idea}}</td>
                           <td>{{$idea->status}}</td>
                       </tr>
 
