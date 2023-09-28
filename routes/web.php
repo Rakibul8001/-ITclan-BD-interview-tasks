@@ -43,7 +43,7 @@ Route::middleware(['auth'])->group(function () {
 
 //test email by mailtrap
 Route::get('/send-email',function(){
-    $message ='This is for testing email using smtp';
+    $message ='This is for testing email using smtp mailtrap';
 
     $recipients =['mdrakibul.islam8001@gmail.com'];
      Mail::to($recipients)->send(new SendEmail($message));
